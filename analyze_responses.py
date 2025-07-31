@@ -43,8 +43,25 @@ def average_skills_from_row(row):
 # ฟังก์ชันแนะนำทักษะที่ควรพัฒนา
 def suggest_development(avg_skills):
     sorted_skills = sorted(avg_skills.items(), key=lambda x: x[1])
-    weakest_skills = [skill for skill, score in sorted_skills[:2]]
-    return f"จากการวิเคราะห์ คุณควรพัฒนาเรื่อง {', '.join(weakest_skills)} เพิ่มเติม เนื่องจากเป็นทักษะที่คุณมีคะแนนเฉลี่ยน้อยที่สุดเมื่อเทียบกับทักษะอื่น ๆ"
+    weakest_skills = [skill for skill, _ in sorted_skills[:2]]
+
+    # แผนที่คำศัพท์เป็นภาษาไทย
+    skill_map = {
+        "communication": "การสื่อสาร",
+        "decision making": "การตัดสินใจ",
+        "leadership": "ภาวะผู้นำ",
+        "problem solving": "การแก้ไขปัญหา",
+        "teamwork": "การทำงานเป็นทีม"
+    }
+
+    # สร้างคำแนะนำในรูปแบบที่เป็นธรรมชาติและกระชับ
+    if len(weakest_skills) == 1:
+        return f"แนะนำให้ฝึกฝนเพิ่มเติมด้าน {skill_map[weakest_skills[0]]} เพื่อเสริมความเชี่ยวชาญและสร้างความมั่นใจมากยิ่งขึ้น"
+    else:
+        return (
+            f"คุณควรเน้นพัฒนาด้าน {skill_map[weakest_skills[0]]} และ {skill_map[weakest_skills[1]]} "
+            "เพื่อเพิ่มประสิทธิภาพในการทำงานร่วมกับผู้อื่นและการแก้ไขสถานการณ์"
+        )
 
 # วิเคราะห์ผลลัพธ์และแสดงข้อมูล
 for index, row in df.iterrows():
