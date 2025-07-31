@@ -64,7 +64,7 @@ for index, row in df.iterrows():
 
     # สร้างคำแนะนำ
     suggestion = suggest_development(avg_skills)
-    print(f"\n\t📌 คำแนะนำจาก AI: {suggestion}")
+    print(f"\n\t📌 คำแนะนำจาก : {suggestion}")
     print("-" * 50)
 
     # เพิ่มลง DataFrame ถ้าต้องการ export
